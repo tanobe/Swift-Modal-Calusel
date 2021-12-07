@@ -23,7 +23,6 @@ class CollectionViewController: UIViewController {
         return button
     }()
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -38,43 +37,42 @@ class CollectionViewController: UIViewController {
     
     private let collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = CarouselCollectionViewFlowLayout()
-        //        ↓ CarouselCollectionViewFlowLayoutで記載したため必要無と思われる。あとで消す。
+        //      ↓ CarouselCollectionViewFlowLayoutで記載したため必要無と思われる。あとで消す。
         //        layout.scrollDirection = .horizontalあとで消す。
         //        layout.minimumInteritemSpacing = 0あとで消す。
         //        layout.minimumLineSpacing = 0あとで消す。
         
         
         //      ↓ CollectionViewのx, yの座標にあたる。
-        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 30, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height ), collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height ), collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
         
         return collectionView
-    }()
-    
-    private let container: UILabel = {
-        let container = UILabel()
-        container.text = "a"
-        return container
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "modal_Mask")
         
-        view.addSubview(container)
+//        container.translatesAutoresizingMaskIntoConstraints = false
+//        container.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
+        
+//        view.addSubview(container)
         view.addSubview(collectionView)
         view.addSubview(closeButton)
 //        let nvc = UINavigationController(rootViewController: self)
 //        nvc.isNavigationBarHidden = true
-        
+            
         
         closeButton.addTarget(self, action: #selector(self.closeTapped(_:)), for: .touchUpInside)
-        
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
         closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         closeButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         closeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+
+//        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -82,7 +80,6 @@ class CollectionViewController: UIViewController {
         //コレクションビューで使用するセルをメソッドで登録します。あとで消す。
         collectionView.register(CustomCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-//        collectionView.translatesAutoresizingMaskIntoConstraints = true
     }
     
     @objc func closeTapped(_ sender: UIButton) {

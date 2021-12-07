@@ -13,6 +13,8 @@ class CustomCell: UICollectionViewCell {
     
     private let identifier = "cell"
     
+    private let headerRefreshControl = UIRefreshControl()
+    
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.backgroundColor = .clear
@@ -23,6 +25,8 @@ class CustomCell: UICollectionViewCell {
         tableView.rowHeight = 100
         tableView.clipsToBounds = true
         tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        tableView.frame = CGRect(x: 0.0, y: 100.0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         return tableView
     }()
     
@@ -37,7 +41,7 @@ class CustomCell: UICollectionViewCell {
     }
     
     private func initView() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier!)
         tableView.dataSource = self
 
         contentView.addSubview(tableView)
@@ -46,13 +50,14 @@ class CustomCell: UICollectionViewCell {
         tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
         tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
+        tableView.refreshControl = headerRefreshControl
+        
     }
     
     private func setup() {
         layer.borderColor = UIColor.darkGray.cgColor
         layer.borderWidth = 3.0
         layer.backgroundColor = UIColor.yellow.cgColor
-
         
     }
     
@@ -74,5 +79,29 @@ extension CustomCell: UITableViewDataSource {
         cell.textLabel?.text = item.contents[indexPath.row]
         cell.backgroundColor = item.color
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Section \(section)"
+    }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeaderView")
+        return header
+    }
+    
+}
+
+
+
+class SectionHeaderView: UITableViewHeaderFooterView {
+
+    static let height: CGFloat = 44
+
+    var titleLabel: UILabel!
+
+    func setup(titleText: String) {
+        titleLabel.text = titleText
     }
 }

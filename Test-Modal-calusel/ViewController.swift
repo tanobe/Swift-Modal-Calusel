@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     
     private let items: [DataItem] = [
-        DataItem(userName: "Apple", color: .red, contents: ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ", "k", "l", "m", "n", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n"]),
+        DataItem(userName: "Apple", color: .red, contents: ["あ", "い", "う", "え"]),
         DataItem(userName: "Bunana", color: .yellow, contents: ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ", "a", " 1", "c", "d", "e", "f", "g", "h", "i", "j"]),
         DataItem(userName: "orange", color: .orange, contents: ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ", "a", "3", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n"]),
         DataItem(userName: "Grape", color: .purple, contents: ["あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n"]),
