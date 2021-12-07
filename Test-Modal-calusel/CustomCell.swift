@@ -41,7 +41,7 @@ class CustomCell: UICollectionViewCell {
     }
     
     private func initView() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier!)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
         tableView.dataSource = self
 
         contentView.addSubview(tableView)
