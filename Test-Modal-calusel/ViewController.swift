@@ -55,9 +55,13 @@ class ViewController: UIViewController {
     }
     
     @objc func onPresentTapped(_ sender: UIButton) {
+        presentModeal()
+        print("テスト")
+    }
+    
+    func presentModeal() {
         let vc = CollectionViewController(items: items)
         self.presentModal(vc, modalTransitionStyle: .crossDissolve)
-        print("テスト")
     }
 }
 

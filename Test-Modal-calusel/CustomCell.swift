@@ -26,7 +26,6 @@ class CustomCell: UICollectionViewCell {
         tableView.clipsToBounds = true
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        tableView.frame = CGRect(x: 0.0, y: 100.0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         return tableView
     }()
     
@@ -48,10 +47,9 @@ class CustomCell: UICollectionViewCell {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
         tableView.refreshControl = headerRefreshControl
-        
     }
     
     private func setup() {
@@ -86,10 +84,10 @@ extension CustomCell: UITableViewDataSource {
     }
     
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeaderView")
-        return header
-    }
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeaderView")
+//        return header
+//    }
     
 }
 

@@ -23,6 +23,16 @@ class CollectionViewController: UIViewController {
         return button
     }()
     
+    @objc private let nextPageButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        button.layer.cornerRadius = 10
+        button.setTitleColor(UIColor.white, for: UIControl.State.normal)
+        button.titleLabel?.font = UIFont(name:"HelveticaNeue-Bold", size: 20)
+        button.setTitle("next", for: UIControl.State.normal)
+        return button
+    }()
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -46,20 +56,16 @@ class CollectionViewController: UIViewController {
         //      ↓ CollectionViewのx, yの座標にあたる。
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height), collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
-        
         return collectionView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "modal_Mask")
-        
-//        container.translatesAutoresizingMaskIntoConstraints = false
-//        container.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
-        
-//        view.addSubview(container)
+
         view.addSubview(collectionView)
         view.addSubview(closeButton)
+        view.addSubview(nextPageButton)
 //        let nvc = UINavigationController(rootViewController: self)
 //        nvc.isNavigationBarHidden = true
             
@@ -70,9 +76,16 @@ class CollectionViewController: UIViewController {
         closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         closeButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
         closeButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        nextPageButton.translatesAutoresizingMaskIntoConstraints = false
+        nextPageButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
+        nextPageButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        nextPageButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        nextPageButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        nextPageButton.addTarget(self, action: #selector(nextTapped), for: .touchUpInside)
 
 //        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
+//        collectionView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -82,9 +95,15 @@ class CollectionViewController: UIViewController {
         
     }
     
-    @objc func closeTapped(_ sender: UIButton) {
+    @objc private func closeTapped(_ sender: UIButton) {
         closeButton.isHidden = true
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func nextTapped(sender: UIButton) {
+        let vc = TestViewContoroller()
+        self.navigationController?.pushViewController(vc, animated: true)
+//        self.dismiss(animated: true, completion: nil)
     }
 }
 
