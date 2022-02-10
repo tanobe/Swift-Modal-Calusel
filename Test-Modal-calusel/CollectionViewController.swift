@@ -7,11 +7,13 @@
 
 import UIKit
 
-private let reuseIdentifier = "CustomCell"
+//private let reuseIdentifier = "CustomCell"
 
 class CollectionViewController: UIViewController {
     
     private let dataSource: [DataItem]
+    
+    private let reuseIdentifier = "CustomCell"
     
     private let closeButton: UIButton = {
         let button = UIButton(type: .system)

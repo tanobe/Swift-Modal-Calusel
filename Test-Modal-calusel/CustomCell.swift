@@ -47,14 +47,14 @@ class CustomCell: UICollectionViewCell {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
-        tableView.refreshControl = headerRefreshControl
+        tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
+//        tableView.refreshControl = headerRefreshControl
     }
     
     private func setup() {
         layer.borderColor = UIColor.darkGray.cgColor
-        layer.borderWidth = 3.0
+        layer.borderWidth = 9.0
         layer.backgroundColor = UIColor.yellow.cgColor
         
     }
@@ -75,13 +75,14 @@ extension CustomCell: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         cell.selectionStyle = .none
         cell.textLabel?.text = item.contents[indexPath.row]
-        cell.backgroundColor = item.color
+        cell.backgroundColor = .purple
         return cell
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Section \(section)"
-    }
+    // ↓ 実質これが効いて上にスペースが生まれている
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "Section \(section)"
+//    }
     
     
 //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
