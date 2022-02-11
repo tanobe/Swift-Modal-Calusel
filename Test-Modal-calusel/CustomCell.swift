@@ -44,6 +44,7 @@ class CustomCell: UICollectionViewCell {
         tableView.dataSource = self
 
         contentView.addSubview(tableView)
+//        backgroundColor = .systemYellow
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
