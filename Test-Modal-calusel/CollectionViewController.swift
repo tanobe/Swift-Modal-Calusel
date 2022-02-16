@@ -49,12 +49,6 @@ class CollectionViewController: UIViewController {
     
     private let collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = CarouselCollectionViewFlowLayout()
-        //      ↓ CarouselCollectionViewFlowLayoutで記載したため必要無と思われる。あとで消す。
-        //        layout.scrollDirection = .horizontalあとで消す。
-        //        layout.minimumInteritemSpacing = 0あとで消す。
-        //        layout.minimumLineSpacing = 0あとで消す。
-        
-        
         //      ↓ CollectionViewのx, yの座標にあたる。
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height), collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
@@ -86,8 +80,13 @@ class CollectionViewController: UIViewController {
         nextPageButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         nextPageButton.addTarget(self, action: #selector(nextTapped), for: .touchUpInside)
 
-//        collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        collectionView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: 10).isActive = true
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+//        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+//        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         collectionView.dataSource = self
         collectionView.delegate = self
