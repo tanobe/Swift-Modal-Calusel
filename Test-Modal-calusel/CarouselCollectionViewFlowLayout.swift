@@ -12,6 +12,7 @@ final class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override init() {
         super.init()
         sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+//        sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         minimumLineSpacing = 0
         minimumInteritemSpacing = 0
         itemSize = CGSize(width: 300, height: 600)
